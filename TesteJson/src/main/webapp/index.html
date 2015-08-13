@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript">
+
+$(estado).ready(function(){
+	   $("#montadora").change(function(){
+	      $.ajax({
+	         type: "POST",
+	         url: "EstadoController.java",
+	         data: {estado: $("#estado").val()},
+	         dataType: "json",
+	         success: function(json){
+	            var options = "";
+	            $.each(json, function(key, value){
+	               options += '<option value="' + key + '">' + value + '</option>';
+	            });
+	            $("#cidade").html(options);
+	         }
+	      });
+	   });
+	});
+
+	
+</script>
+</head>
+<body>
+	<label for="estado">Estado:</label>
+	<select name="estado" id="estado">
+		<option value="1">Ms</option>
+		<option value="2">SP</option>
+		<option value="3">BA</option>
+	</select>
+	<br />
+	<label for="cidade">Cidade:</label>
+	<select name="cidade" id="cidade"></select>
+
+</body>
+</html>
